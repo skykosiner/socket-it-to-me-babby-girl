@@ -39,7 +39,7 @@ export class SocketToMeBbg extends EventEmitter {
         this.wss.on("connection", ws => {
             this.addConnection(ws);
             ws.on("message", message => {
-                this.emit("message", message);
+                this.emit("message", message.toString());
             });
 
             ws.on("close", () => {
