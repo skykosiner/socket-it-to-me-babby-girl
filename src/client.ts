@@ -1,7 +1,7 @@
 import { Message, MsgType } from "./socket-it-to-me-babby-girl";
 import WebSocket from "ws";
 
-const wsc = new WebSocket('ws://localhost:8080');
+const wsc = new WebSocket('ws://localhost:42069');
 
 wsc.on("open", () => {
     const messageToSend: Message = {
