@@ -35,15 +35,19 @@ export class SocketToMeBbg extends EventEmitter {
                 const msg: Message = JSON.parse(message.toString());
 
                 if (msg.type === MsgType.USERNAME) {
+                    console.log("New connection", msg.from);
                     this.addConnection(ws, msg.from);
                 } else if (msg.type === MsgType.ALL) {
                     this.broadcast(msg, ws)
                 } else if (msg.type === MsgType.PRIVATE) {
-                    // Send the message to the user with a matching username
+                    for (const [username, connection] of Object.entries(this.connections)) {
+                        if (username === msg.to) {
+                            connection.send(JSON.stringify(msg));
+                        }
+                    }
                 }
 
                 this.emit("message", msg);
-                console.log(this.connections);
             })
 
             ws.on("close", () => {
