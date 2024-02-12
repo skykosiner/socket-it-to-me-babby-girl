@@ -70,7 +70,7 @@ export default function App(): JSX.Element {
 
     return (
         <div>
-            <form onClick={sendMessage}>
+            <form onSubmit={sendMessage}>
                 <input type="text" name="message: " value={messageToSend} onChange={e => setMessageToSend(e.target.value)} />
                 <button onClick={() => setSendType(MsgType.ALL)}>Send All</button>
                 <button onClick={() => setSendType(MsgType.PRIVATE)}>Send Private</button>
@@ -80,6 +80,6 @@ export default function App(): JSX.Element {
             </form>
 
             {message && <p>{message}</p>}
-        </div>
+        </div >
     )
 }
